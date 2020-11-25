@@ -9,6 +9,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static java.util.Optional.of;
+
 @Path("/patient")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,4 +32,15 @@ public class PatientResource {
                 .orElse(Response.status(Response.Status.NOT_FOUND))
                 .build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam final String id) {
+        return of(this.service.delete(id))
+                .filter(b -> b)
+                .map(__ -> Response.noContent())
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
+    }
+
 }

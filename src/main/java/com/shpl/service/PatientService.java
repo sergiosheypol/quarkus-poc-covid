@@ -7,7 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class PatientService implements Create, Get {
+public class PatientService implements Create, Get, Delete {
 
     @Inject
     PatientRepository repository;
