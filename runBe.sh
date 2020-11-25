@@ -1,0 +1,1 @@
+docker run -i --name be --network=pocNetwork --rm -p 8080:8080 quarkus/covidpoc

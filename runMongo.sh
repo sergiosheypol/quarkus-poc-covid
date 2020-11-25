@@ -1,1 +1,1 @@
-docker run -ti --rm -p 27017:27017 mongo:4.0
+docker run -ti --rm --name mongodb --network=pocNetwork -p 27017:27017 mongo:4.0
