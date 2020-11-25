@@ -2,12 +2,12 @@ package com.shpl.resource;
 
 import com.shpl.model.Patient;
 import com.shpl.service.PatientService;
-import io.smallrye.mutiny.Uni;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/patient")
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,7 +24,10 @@ public class PatientResource {
 
     @GET
     @Path("/{id}")
-    public Patient get(@PathParam final Integer id) {
-        return this.service.get(id);
+    public Response get(@PathParam final String id) {
+        return this.service.findById(id)
+                .map(Response::ok)
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 }

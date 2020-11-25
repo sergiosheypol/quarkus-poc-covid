@@ -10,7 +10,7 @@ import lombok.*;
 public class Patient {
 
     @With
-    private Integer id;
+    private String id;
 
     private String name;
 
